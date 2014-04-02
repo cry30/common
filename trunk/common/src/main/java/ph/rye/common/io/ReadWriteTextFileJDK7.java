@@ -1,4 +1,5 @@
 package ph.rye.common.io;
+
 /**
  *  Copyright 2013 Royce Remulla
  *
@@ -33,8 +34,12 @@ import java.util.Scanner;
  */
 public class ReadWriteTextFileJDK7 {
 
+
     /** File encoding. */
     static final Charset ENCODING = StandardCharsets.UTF_8;
+
+    /** Platform independent line separator. */
+    public static final String LINE_SEP = System.getProperty("line.separator");
 
     /**
      * Unbuffered reader of small text files. For files less than 8K.
@@ -42,7 +47,8 @@ public class ReadWriteTextFileJDK7 {
      * @param pFileName filename.
      * @throws IOException if error occurs while parsing the file.
      */
-    public List<String> readSmallTextFile(final String pFileName) throws IOException
+    public List<String> readSmallTextFile(final String pFileName)
+            throws IOException
     {
         final Path path = Paths.get(pFileName);
         return Files.readAllLines(path, ENCODING);
@@ -55,7 +61,8 @@ public class ReadWriteTextFileJDK7 {
      * @param aFileName filename.
      * @throws IOException if error occurs while parsing the file.
      */
-    public void writeSmallTextFile(final List<String> aLines, final String aFileName) throws IOException
+    public void writeSmallTextFile(final List<String> aLines,
+            final String aFileName) throws IOException
     {
         final Path path = Paths.get(aFileName);
         Files.write(path, aLines, ENCODING);
@@ -67,17 +74,38 @@ public class ReadWriteTextFileJDK7 {
      * @param aFileName file name of the file to read.
      * @throws IOException if error occurs while parsing the file.
      */
-    public List<String> readLargeTextFile(final String aFileName) throws IOException
+    public List<String> readLargeTextFile(final String aFileName)
+            throws IOException
     {
-        final List<String> input = new ArrayList<String>();
+        final List<String> retval = new ArrayList<String>();
         final Path path = Paths.get(aFileName);
         try (Scanner scanner = new Scanner(path, ENCODING.name())) {
             while (scanner.hasNextLine()) {
-                input.add(scanner.nextLine());
+                retval.add(scanner.nextLine());
             }
         }
-        return input;
+        return retval;
     }
+
+    /**
+     * Buffered reading of large text file. 8k and above.
+     * 
+     * @param aFileName file name of the file to read.
+     * @throws IOException if error occurs while parsing the file.
+     */
+    public String readLargeAsString(final String aFileName) throws IOException
+    {
+        final StringBuilder retval = new StringBuilder();
+        final Path path = Paths.get(aFileName);
+        try (Scanner scanner = new Scanner(path, ENCODING.name())) {
+            while (scanner.hasNextLine()) {
+                retval.append(scanner.nextLine());
+
+            }
+        }
+        return retval.toString();
+    }
+
 
     /**
      * Write large text file. Above 8k in size.
@@ -86,7 +114,8 @@ public class ReadWriteTextFileJDK7 {
      * @param aLines lines of String to write.
      * @throws IOException if error occurs while parsing the file.
      */
-    public void writeLargeTextFile(final String aFileName, final List<String> aLines) throws IOException
+    public void writeLargeTextFile(final String aFileName,
+            final List<String> aLines) throws IOException
     {
         final Path path = Paths.get(aFileName);
         try (BufferedWriter writer = Files.newBufferedWriter(path, ENCODING)) {
