@@ -93,7 +93,8 @@ public class ObjectUtil {
     }
 
     /**
-     * PLSQL decode function.
+     * PLSQL decode function. NOTE: Use traditional if-then-elseif or switch
+     * statement for performance consideration.
      * 
      * @param expression is the value to compare. S
      * @param search is the value that is compared against expression. S
