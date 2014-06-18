@@ -17,6 +17,7 @@ package ph.rye.common.lang;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -58,7 +59,15 @@ public abstract class AbstractResource {
                 idxList.add(next.substring(key.length()));
             }
         }
-        Collections.sort(idxList);
+        Collections.sort(idxList, new Comparator<String>() {
+
+            @Override
+            public int compare(final String o1, final String o2)
+            {
+
+                return Integer.valueOf(o1).compareTo(Integer.valueOf(o2));
+            }
+        });
         if (!idxList.isEmpty()) {
             int counter = 0;
             for (final String idxStr : idxList) {
@@ -78,6 +87,5 @@ public abstract class AbstractResource {
         }
 
     }
-
 
 }
