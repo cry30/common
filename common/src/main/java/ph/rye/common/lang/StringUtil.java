@@ -46,6 +46,21 @@ public class StringUtil {
     }
 
     /**
+     * Generate spaces.
+     * 
+     * @param count number of spaces to generate.
+     * @return string with the specified length.
+     */
+    final String space(final int count)
+    {
+        final StringBuilder strBuilder = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            strBuilder.append(' ');
+        }
+        return strBuilder.toString();
+    }
+
+    /**
      * True if string has non-null and not empty.
      * 
      * @param string string to check.
