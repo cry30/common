@@ -51,7 +51,7 @@ public class StringUtil {
      * @param count number of spaces to generate.
      * @return string with the specified length.
      */
-    final String space(final int count)
+    public final String space(final int count)
     {
         final StringBuilder strBuilder = new StringBuilder();
         for (int i = 0; i < count; i++) {
