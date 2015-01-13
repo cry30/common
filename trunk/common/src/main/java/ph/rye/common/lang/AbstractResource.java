@@ -39,7 +39,8 @@ public abstract class AbstractResource {
     /**
      * Apply custom processing to every indexed resource.
      * 
-     * @param string
+     * @param string the key.
+     * @param index array of index in case of underscore separated indeces.
      */
     protected abstract void process(String string, int... index);
 
