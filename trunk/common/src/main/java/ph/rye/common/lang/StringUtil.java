@@ -11,23 +11,27 @@
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
- *  limitations under the License. 
+ *  limitations under the License.
  */
 package ph.rye.common.lang;
 
 /**
  * Some utilities for String manipulation.
- * 
+ *
  * @author Royce Remulla
  */
-public class StringUtil {
+public final class StringUtil {
+
+
+    /** */
+    private StringUtil() {}
 
     /**
      * Trims the String content on an array of String.
-     * 
+     *
      * @param array String array to trim contents.
      */
-    public String[] trimArray(final String[] array)
+    public static String[] trimArray(final String[] array)
     {
         String[] retval = null; //NOPMD: null default, conditionally redefine.
         if (array != null) {
@@ -45,27 +49,27 @@ public class StringUtil {
         return retval;
     }
 
-    /**
-     * Generate spaces.
-     * 
-     * @param count number of spaces to generate.
-     * @return string with the specified length.
-     */
-    public final String space(final int count)
-    {
-        final StringBuilder strBuilder = new StringBuilder();
-        for (int i = 0; i < count; i++) {
-            strBuilder.append(' ');
-        }
-        return strBuilder.toString();
-    }
+    //    /**
+    //     * Generate spaces.
+    //     *
+    //     * @param count number of spaces to generate.
+    //     * @return string with the specified length.
+    //     */
+    //    public final String space(final int count)
+    //    {
+    //        final StringBuilder strBuilder = new StringBuilder();
+    //        for (int i = 0; i < count; i++) {
+    //            strBuilder.append(' ');
+    //        }
+    //        return strBuilder.toString();
+    //    }
 
     /**
      * True if string has non-null and not empty.
-     * 
+     *
      * @param string string to check.
      */
-    public boolean hasValue(final String string)
+    public static boolean hasValue(final String string)
     {
         return string != null && !"".equals(string);
     }
