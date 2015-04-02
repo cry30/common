@@ -14,7 +14,7 @@ package ph.rye.common.io;
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- *   
+ *
  */
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import java.util.Scanner;
 
 /**
  * File reader/writer.
- * 
+ *
  * @author Royce Remulla
  */
 public class ReadWriteTextFileJDK7 {
@@ -43,7 +43,7 @@ public class ReadWriteTextFileJDK7 {
 
     /**
      * Unbuffered reader of small text files. For files less than 8K.
-     * 
+     *
      * @param pFileName filename.
      * @throws IOException if error occurs while parsing the file.
      */
@@ -56,13 +56,13 @@ public class ReadWriteTextFileJDK7 {
 
     /**
      * Write small text file. Below 8k in size.
-     * 
+     *
      * @param aLines list of String lines to write to file.
      * @param aFileName filename.
      * @throws IOException if error occurs while parsing the file.
      */
     public void writeSmallTextFile(final List<String> aLines,
-            final String aFileName) throws IOException
+                                   final String aFileName) throws IOException
     {
         final Path path = Paths.get(aFileName);
         Files.write(path, aLines, ENCODING);
@@ -70,7 +70,7 @@ public class ReadWriteTextFileJDK7 {
 
     /**
      * Buffered reading of large text file. 8k and above.
-     * 
+     *
      * @param aFileName file name of the file to read.
      * @throws IOException if error occurs while parsing the file.
      */
@@ -89,7 +89,7 @@ public class ReadWriteTextFileJDK7 {
 
     /**
      * Buffered reading of large text file. 8k and above.
-     * 
+     *
      * @param aFileName file name of the file to read.
      * @throws IOException if error occurs while parsing the file.
      */
@@ -100,7 +100,7 @@ public class ReadWriteTextFileJDK7 {
         try (Scanner scanner = new Scanner(path, ENCODING.name())) {
             while (scanner.hasNextLine()) {
                 retval.append(scanner.nextLine());
-
+                retval.append(LINE_SEP);
             }
         }
         return retval.toString();
@@ -109,13 +109,14 @@ public class ReadWriteTextFileJDK7 {
 
     /**
      * Write large text file. Above 8k in size.
-     * 
+     *
      * @param aFileName file name
      * @param aLines lines of String to write.
      * @throws IOException if error occurs while parsing the file.
      */
     public void writeLargeTextFile(final String aFileName,
-            final List<String> aLines) throws IOException
+                                   final List<String> aLines)
+            throws IOException
     {
         final Path path = Paths.get(aFileName);
         try (BufferedWriter writer = Files.newBufferedWriter(path, ENCODING)) {

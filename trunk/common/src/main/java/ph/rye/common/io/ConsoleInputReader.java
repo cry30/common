@@ -22,8 +22,8 @@ public class ConsoleInputReader {
      */
     public String readInput() throws IOException
     {
-        final BufferedReader bufferedReader = new BufferedReader(
-            new InputStreamReader(System.in));
+        final BufferedReader bufferedReader =
+                new BufferedReader(new InputStreamReader(System.in));
         try {
             return bufferedReader.readLine();
         } finally {

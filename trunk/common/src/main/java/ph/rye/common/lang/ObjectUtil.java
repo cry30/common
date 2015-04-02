@@ -112,7 +112,7 @@ public class ObjectUtil {
             "PMD.CompareObjectsWithEquals" //Required to compare nulls.
     })
     public <S, T> T decode(final S expression, final S search,
-            final T... result)
+                           final T... result)
     {
 
         final java.util.List<S> ifList = new java.util.ArrayList<S>();
