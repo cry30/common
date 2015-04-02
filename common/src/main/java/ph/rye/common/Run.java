@@ -11,16 +11,18 @@ public class Run {
 
     public static void main(final String[] args) throws IOException
     {
-        final List<String> list = new ReadWriteTextFileJDK7()
-                .readSmallTextFile("d:\\File1.txt");
+        final List<String> list =
+                new ReadWriteTextFileJDK7().readSmallTextFile("d:\\File1.txt");
 
 
         final List<String> install = new ArrayList<String>();
         final List<String> pom = new ArrayList<String>();
         for (final String string : list) {
 
-            final String artifact = string.substring(
-                    string.lastIndexOf('/') + 1, string.indexOf('.'));
+            final String artifact =
+                    string.substring(
+                        string.lastIndexOf('/') + 1,
+                        string.indexOf('.'));
 
             install.add("call mvn install:install-file -DgroupId=oaf-jdbc "
                     + "-DartifactId=" + artifact
