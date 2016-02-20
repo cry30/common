@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 
 /**
  * Read from console.
- * 
+ *
  * <pre>
- * $Author: $ 
+ * $Author: $
  * $Date: $
  * </pre>
  */
@@ -17,18 +17,17 @@ public class ConsoleInputReader {
 
     /**
      * Read input from command line.
-     * 
+     *
      * @throws IOException if error occurs while reading from the input stream.
      */
-    public String readInput() throws IOException
-    {
-        final BufferedReader bufferedReader =
+    public String readInput() throws IOException {
+        final BufferedReader buffReader =
                 new BufferedReader(new InputStreamReader(System.in));
-        try {
-            return bufferedReader.readLine();
-        } finally {
-            bufferedReader.close();
-        }
+
+        final String retval = buffReader.readLine();
+        buffReader.close();
+
+        return retval;
     }
 
 }

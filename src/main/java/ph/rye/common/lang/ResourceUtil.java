@@ -21,9 +21,9 @@ import java.util.List;
 
 /**
  * Resource bundle utility.
- * 
+ *
  * <pre>
- * $Author$ 
+ * $Author$
  * $Date$
  * </pre>
  */
@@ -32,24 +32,24 @@ public class ResourceUtil {
 
     /**
      * Reads a String array using the indexed key.
-     * 
+     *
      * @param resource resource bundle name. Not null.
      * @param key resource key. Not null.
      */
-    public String[] getArray(final String resource, final String key)
-    {
+    public String[] getArray(final String resource, final String key) {
         assert resource != null;
         assert key != null;
 
         final List<String> retval = new ArrayList<String>();
-        new AbstractResource() {
+        new ResourceIter(resource)
+            .each((nextElement, index) -> retval.add(nextElement), key);
 
-            @Override
-            protected void process(final String string, final int... index)
-            {
-                retval.add(string);
-            }
-        }.execute(resource, key);
+        //        new AbstractResource() {
+        //            @Override
+        //            protected void process(final String string, final int... index) {
+        //                retval.add(string);
+        //            }
+        //        }.execute(resource, key);
 
         return retval.toArray(new String[retval.size()]);
     }

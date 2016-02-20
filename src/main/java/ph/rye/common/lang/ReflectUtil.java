@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ *
  * <pre>
- * @author $Author$ 
- * @version $Date$
+ * &#64;author $Author$ 
+ * &#64;version $Date$
  * </pre>
  */
 public class ReflectUtil {
@@ -35,14 +35,13 @@ public class ReflectUtil {
 
     /**
      * Returns all fields of a bean including inherited.
-     * 
+     *
      * @param bean - the bean whose properties are to be derived. Must not be
      *            null.
-     * 
+     *
      * @return - array of bean fields/properties
      */
-    public static Field[] getAllFields(final Object bean)
-    {
+    public static Field[] getAllFields(final Object bean) {
         assert bean != null;
 
         final List<Field> retval = new ArrayList<Field>();
@@ -59,8 +58,7 @@ public class ReflectUtil {
 
     /** {@inheritDoc} */
     @Override
-    public String toString()
-    {
+    public String toString() {
         return super.toString() + " " + RCS_ID;
     }
 

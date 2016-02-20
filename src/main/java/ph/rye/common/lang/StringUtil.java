@@ -15,6 +15,8 @@
  */
 package ph.rye.common.lang;
 
+import java.util.Set;
+
 /**
  * Some utilities for String manipulation.
  *
@@ -31,8 +33,7 @@ public final class StringUtil {
      *
      * @param array String array to trim contents.
      */
-    public static String[] trimArray(final String[] array)
-    {
+    public static String[] trimArray(final String[] array) {
         String[] retval = null; //NOPMD: null default, conditionally redefine.
         if (array != null) {
             retval = new String[array.length];
@@ -49,6 +50,15 @@ public final class StringUtil {
         return retval;
     }
 
+    public static String ltrim(final String string) {
+        return string.replaceAll("^\\s+", "");
+    }
+
+    public static String rtrim(final String string) {
+        return string.replaceAll("\\s+$", "");
+    }
+
+
     //    /**
     //     * Generate spaces.
     //     *
@@ -64,13 +74,25 @@ public final class StringUtil {
     //        return strBuilder.toString();
     //    }
 
+    public static String join(final Set<String> strings,
+                              final String delimeter) {
+        final StringBuilder strBuilder = new StringBuilder();
+        for (final String string : strings) {
+            if (strBuilder.length() > 0) {
+                strBuilder.append(delimeter);
+            }
+            strBuilder.append(string);
+        }
+        return strBuilder.toString();
+    }
+
+
     /**
      * True if string has non-null and not empty.
      *
      * @param string string to check.
      */
-    public static boolean hasValue(final String string)
-    {
+    public static boolean hasValue(final String string) {
         return string != null && !"".equals(string);
     }
 

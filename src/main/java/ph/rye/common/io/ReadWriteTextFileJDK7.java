@@ -36,7 +36,7 @@ public class ReadWriteTextFileJDK7 {
 
 
     /** File encoding. */
-    static final Charset ENCODING = StandardCharsets.UTF_8;
+    private static final Charset ENCODING = StandardCharsets.UTF_8;
 
     /** Platform independent line separator. */
     public static final String LINE_SEP = System.getProperty("line.separator");
@@ -48,8 +48,7 @@ public class ReadWriteTextFileJDK7 {
      * @throws IOException if error occurs while parsing the file.
      */
     public List<String> readSmallTextFile(final String pFileName)
-            throws IOException
-    {
+            throws IOException {
         final Path path = Paths.get(pFileName);
         return Files.readAllLines(path, ENCODING);
     }
@@ -62,8 +61,7 @@ public class ReadWriteTextFileJDK7 {
      * @throws IOException if error occurs while parsing the file.
      */
     public void writeSmallTextFile(final List<String> aLines,
-                                   final String aFileName) throws IOException
-    {
+                                   final String aFileName) throws IOException {
         final Path path = Paths.get(aFileName);
         Files.write(path, aLines, ENCODING);
     }
@@ -75,11 +73,12 @@ public class ReadWriteTextFileJDK7 {
      * @throws IOException if error occurs while parsing the file.
      */
     public List<String> readLargeTextFile(final String aFileName)
-            throws IOException
-    {
+            throws IOException {
+
         final List<String> retval = new ArrayList<String>();
-        final Path path = Paths.get(aFileName);
-        try (Scanner scanner = new Scanner(path, ENCODING.name())) {
+
+        try (Scanner scanner =
+                new Scanner(Paths.get(aFileName), ENCODING.name())) {
             while (scanner.hasNextLine()) {
                 retval.add(scanner.nextLine());
             }
@@ -93,11 +92,12 @@ public class ReadWriteTextFileJDK7 {
      * @param aFileName file name of the file to read.
      * @throws IOException if error occurs while parsing the file.
      */
-    public String readLargeAsString(final String aFileName) throws IOException
-    {
+    public String readLargeAsString(final String aFileName) throws IOException {
         final StringBuilder retval = new StringBuilder();
-        final Path path = Paths.get(aFileName);
-        try (Scanner scanner = new Scanner(path, ENCODING.name())) {
+
+        try (Scanner scanner =
+                new Scanner(Paths.get(aFileName), ENCODING.name())) {
+
             while (scanner.hasNextLine()) {
                 retval.append(scanner.nextLine());
                 retval.append(LINE_SEP);
@@ -116,10 +116,10 @@ public class ReadWriteTextFileJDK7 {
      */
     public void writeLargeTextFile(final String aFileName,
                                    final List<String> aLines)
-            throws IOException
-    {
-        final Path path = Paths.get(aFileName);
-        try (BufferedWriter writer = Files.newBufferedWriter(path, ENCODING)) {
+                                           throws IOException {
+        try (BufferedWriter writer =
+                Files.newBufferedWriter(Paths.get(aFileName), ENCODING)) {
+
             for (final String line : aLines) {
                 writer.write(line);
                 writer.newLine();
