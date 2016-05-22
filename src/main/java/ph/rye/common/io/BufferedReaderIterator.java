@@ -17,8 +17,7 @@ package ph.rye.common.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-
-import ph.rye.common.lang.LoopBody;
+import java.util.function.BiConsumer;
 
 /**
  * @author royce
@@ -28,13 +27,13 @@ public class BufferedReaderIterator {
 
 
     private final transient BufferedReader reader;
-    private final transient LoopBody<String> body;
+    private final transient BiConsumer<Integer, String> body;
 
     private transient int index;
 
 
     public BufferedReaderIterator(final BufferedReader reader,
-            final LoopBody<String> body) {
+            final BiConsumer<Integer, String> body) {
 
         this.reader = reader;
         this.body = body;
@@ -45,7 +44,7 @@ public class BufferedReaderIterator {
         try {
             String line = reader.readLine();
             while (line != null) {
-                body.next(index, line);
+                body.accept(index, line);
                 line = reader.readLine();
                 index++;
             }

@@ -15,7 +15,11 @@
  */
 package ph.rye.common.lang;
 
+import java.util.EnumSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import ph.rye.common.loop.Range;
 
 
 /**
@@ -145,4 +149,34 @@ public final class ObjectUtil {
     }
 
 
+    /**
+     * True if object is non-null and is not empty string and is not empty if
+     * array or list.
+     *
+     * @param object object to check.
+     */
+    public static boolean hasValue(final Object object) {
+
+        final Ano<Boolean> retval = new Ano<>();
+        retval.set(object != null && !"".equals(object));
+
+        if (object != null && !retval.get()) {
+            retval.set(
+                object.getClass().isArray() && ((Object[]) object).length > 0);
+        }
+
+        return retval.get();
+    }
+
+    public static <E extends Enum<E>> Map<String, String> toValueDispMap(final Class<E> eklass) {
+
+        final Map<String, String> retval = new LinkedHashMap<>();
+        for (final E next : EnumSet.allOf(eklass)) {
+            retval.put(next.name(), next.toString());
+        }
+        return retval;
+
+    }
+
 }
+

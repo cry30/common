@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package ph.rye.common.lang;
+package ph.rye.common.loop;
 
 import java.util.Enumeration;
 import java.util.Map;

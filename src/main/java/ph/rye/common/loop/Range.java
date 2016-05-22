@@ -13,7 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package ph.rye.common.lang;
+package ph.rye.common.loop;
+
+import java.util.function.BiConsumer;
 
 /**
  * @author royce
@@ -31,10 +33,26 @@ public final class Range<T> {
     }
 
 
-    public void each(final LoopBody<T> rangeBody) {
+    public void each(final BiConsumer<Integer, T> rangeBody) {
         for (int i = start; i <= end; i++) {
-            rangeBody.next(i, null);
+            rangeBody.accept(i, null);
         }
     }
+
+
+    /**
+     * @return the start
+     */
+    public int getStart() {
+        return start;
+    }
+
+    /**
+     * @return the end
+     */
+    public int getEnd() {
+        return end;
+    }
+
 
 }

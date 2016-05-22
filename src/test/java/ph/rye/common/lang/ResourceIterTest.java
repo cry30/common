@@ -24,6 +24,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import ph.rye.common.loop.ResourceIter;
+
 /**
  * @author royce
  *
@@ -32,7 +34,7 @@ public class ResourceIterTest {
 
     /**
      * Test method for
-     * {@link ph.rye.common.lang.ResourceIter#each(ph.rye.common.lang.MultiIndexLoopBody)}
+     * {@link ph.rye.common.loop.ResourceIter#each(ph.rye.common.loop.MultiIndexLoopBody)}
      * .
      */
     @Test
@@ -60,7 +62,7 @@ public class ResourceIterTest {
 
     /**
      * Test method for
-     * {@link ph.rye.common.lang.ResourceIter#each(ph.rye.common.lang.MultiIndexLoopBody, java.lang.String)}
+     * {@link ph.rye.common.loop.ResourceIter#each(ph.rye.common.loop.MultiIndexLoopBody, java.lang.String)}
      * .
      */
     @Test

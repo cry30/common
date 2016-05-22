@@ -15,7 +15,7 @@
  */
 package ph.rye.common.lang;
 
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * Some utilities for String manipulation.
@@ -58,26 +58,10 @@ public final class StringUtil {
         return string.replaceAll("\\s+$", "");
     }
 
-
-    //    /**
-    //     * Generate spaces.
-    //     *
-    //     * @param count number of spaces to generate.
-    //     * @return string with the specified length.
-    //     */
-    //    public final String space(final int count)
-    //    {
-    //        final StringBuilder strBuilder = new StringBuilder();
-    //        for (int i = 0; i < count; i++) {
-    //            strBuilder.append(' ');
-    //        }
-    //        return strBuilder.toString();
-    //    }
-
-    public static String join(final Set<String> strings,
+    public static String join(final Collection<String> stringList,
                               final String delimeter) {
         final StringBuilder strBuilder = new StringBuilder();
-        for (final String string : strings) {
+        for (final String string : stringList) {
             if (strBuilder.length() > 0) {
                 strBuilder.append(delimeter);
             }
@@ -86,6 +70,14 @@ public final class StringUtil {
         return strBuilder.toString();
     }
 
+    public static String camelToTitle(final String camelCase) {
+        final StringBuilder strBuilder = new StringBuilder();
+        for (final String word : camelCase
+            .split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])")) {
+            strBuilder.append(word).append(' ');
+        }
+        return strBuilder.toString().trim();
+    }
 
     /**
      * True if string has non-null and not empty.

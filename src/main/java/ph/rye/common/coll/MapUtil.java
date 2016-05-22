@@ -13,11 +13,34 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package ph.rye.common.lang;
+package ph.rye.common.coll;
+
+import java.util.Map;
 
 /**
  * @author royce
+ *
  */
-public interface MultiIndexLoopBody {
-    void next(String nextElement, int... index);
+public final class MapUtil {
+
+
+    private MapUtil() {}
+
+
+    /**
+     * Copy map contents.
+     *
+     * @param dest destination map.
+     * @param source source map.
+     *
+     * @param <K> the type of keys maintained by this map
+     * @param <V> the type of mapped values
+     */
+    public static <K, V> void copyMap(final Map<K, V> dest,
+                                      final Map<K, V> source) {
+        for (final K key : source.keySet()) {
+            dest.put(key, source.get(key));
+        }
+    }
+
 }

@@ -13,11 +13,27 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package ph.rye.common.lang;
+package ph.rye.common.loop;
+
+import java.util.Enumeration;
+import java.util.function.Consumer;
 
 /**
  * @author royce
  */
-public interface LoopBody<T> {
-    void next(int index, T nextElement);
+public class Enumer<T> {
+
+    private final transient Enumeration<T> enu;
+
+    public Enumer(final Enumeration<T> enumer) {
+        assert enumer != null;
+        this.enu = enumer;
+    }
+
+    public void each(final Consumer<T> consumer) {
+        while (enu.hasMoreElements()) {
+            consumer.accept(enu.nextElement());
+        }
+    }
+
 }
