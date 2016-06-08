@@ -17,6 +17,7 @@ package ph.rye.common.lang;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import ph.rye.common.loop.ResourceIter;
 
@@ -46,14 +47,22 @@ public class ResourceUtil {
         new ResourceIter(resource)
             .each((nextElement, index) -> retval.add(nextElement), key);
 
-        //        new AbstractResource() {
-        //            @Override
-        //            protected void process(final String string, final int... index) {
-        //                retval.add(string);
-        //            }
-        //        }.execute(resource, key);
-
         return retval.toArray(new String[retval.size()]);
+    }
+
+    /**
+     * Reads a String using a key.
+     *
+     * @param resource resource bundle name. Not null.
+     * @param key resource key. Not null.
+     */
+    public static String getString(final String resource, final String key) {
+        assert resource != null;
+        assert key != null;
+
+        final ResourceBundle resourceBundle =
+                ResourceBundle.getBundle(resource);
+        return resourceBundle.getString(resource);
     }
 
 }
