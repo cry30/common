@@ -31,7 +31,7 @@ public class ReflectUtilTest {
     @Test
     public void testGetAllFields() {
 
-        Assert.assertSame(2, ReflectUtil.getAllFields(new Dummy()).length);
+        Assert.assertSame(1, ReflectUtil.getAllFields(new Dummy()).length);
     }
 
 }

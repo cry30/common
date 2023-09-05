@@ -43,7 +43,7 @@ SQL codes in java.
   - Range
   - Resource Iterator
   
-6. Utility classes
+6.  Utility classes
 
   - AnnUtil - Annotation Util.
   - Ano - Generic placeholder object, can be used for tracking return value.
@@ -55,9 +55,7 @@ SQL codes in java.
   
 
 Changelog:
-----------
 
+----------
 - June 16, 2016
   - Added Project Wiki.
-  
- 

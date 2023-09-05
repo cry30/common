@@ -36,15 +36,11 @@ public class ConsoleInputReaderTest {
      */
     @Test
     public void testReadInput() throws IOException {
-
         final InputStream stdin = System.in;
         System.setIn(new ByteArrayInputStream("dummy".getBytes()));
 
         final ConsoleInputReader sut = Mockito.spy(new ConsoleInputReader());
         Assert.assertEquals("dummy", sut.readInput());
         System.setIn(stdin);
-
     }
-
-
 }
