@@ -1,37 +1,14 @@
-/**
- *   Copyright 2014 Royce Remulla
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
 package ph.rye.common.lang;
 
 import java.util.EnumSet;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import ph.rye.common.loop.Range;
 
 
 /**
  * Common object utility.
- *
- * <pre>
- * $Author: $
- * $Date: $
- * $HeadURL: $
- * </pre>
- *
- * @author Royce.
  */
 public final class ObjectUtil {
 
@@ -50,11 +27,11 @@ public final class ObjectUtil {
      * @param <V> map value generic type.
      */
     public static <K, V> V mapGetInit(final Map<K, V> map, final K key,
-                                      final V valForNull) {
-        if (map.get(key) == null) {
-            map.put(key, valForNull);
-        }
-        return map.get(key);
+	    final V valForNull) {
+	if (map.get(key) == null) {
+	    map.put(key, valForNull);
+	}
+	return map.get(key);
     }
 
     /**
@@ -65,17 +42,17 @@ public final class ObjectUtil {
      */
     public static boolean isEqual(final Object object1, final Object object2) {
 
-        boolean retval;
-        if (object1 == null && object2 == null) {
-            retval = true;
-        } else if (object2 == null) {
-            retval = object1 != null;
-        } else if (object1 == null) {
-            retval = object2 != null;
-        } else {
-            retval = object1.equals(object2);
-        }
-        return retval;
+	boolean retval;
+	if (object1 == null && object2 == null) {
+	    retval = true;
+	} else if (object2 == null) {
+	    retval = object1 != null;
+	} else if (object1 == null) {
+	    retval = object2 != null;
+	} else {
+	    retval = object1.equals(object2);
+	}
+	return retval;
     }
 
     /**
@@ -87,7 +64,7 @@ public final class ObjectUtil {
      * @param <T> generic method, any type of object.
      */
     public static <T> T nvl(final T ifObj, final T elseObj) {
-        return ifObj == null ? elseObj : ifObj;
+	return ifObj == null ? elseObj : ifObj;
     }
 
     /**
@@ -102,50 +79,50 @@ public final class ObjectUtil {
      * @see Unit Test: PrsUtil_decodeTest.
      */
     public static Object decode(final Object expression, final Object search,
-                                final Object... result) {
+	    final Object... result) {
 
-        final java.util.List<Object> ifList = new java.util.ArrayList<>();
-        ifList.add(search);
+	final java.util.List<Object> ifList = new java.util.ArrayList<>();
+	ifList.add(search);
 
-        final java.util.List<Object> thenList = new java.util.ArrayList<>();
+	final java.util.List<Object> thenList = new java.util.ArrayList<>();
 
-        final Ano<Object> defaultResult =
-                new Ano<>(buildIfThenList(ifList, thenList, result));
-        final Ano<Object> retval = new Ano<>(defaultResult.get());
-        for (int i = 0; i < ifList.size(); i++) {
-            final Object nextIf = ifList.get(i);
-            if (isEqual(expression, nextIf)) {
-                retval.set(thenList.get(i));
-                break;
-            }
-        }
+	final Ano<Object> defaultResult =
+		new Ano<>(buildIfThenList(ifList, thenList, result));
+	final Ano<Object> retval = new Ano<>(defaultResult.get());
+	for (int i = 0; i < ifList.size(); i++) {
+	    final Object nextIf = ifList.get(i);
+	    if (isEqual(expression, nextIf)) {
+		retval.set(thenList.get(i));
+		break;
+	    }
+	}
 
-        return retval.get();
+	return retval.get();
     }
 
     private static Object buildIfThenList(final java.util.List<Object> ifList,
-                                          final java.util.List<Object> thenList,
-                                          final Object... result) {
+	    final java.util.List<Object> thenList,
+	    final Object... result) {
 
-        final Ano<Object> defaultResult = new Ano<>();
-        if (result == null || result.length == 0) {
-            thenList.add(null);
+	final Ano<Object> defaultResult = new Ano<>();
+	if (result == null || result.length == 0) {
+	    thenList.add(null);
 
-        } else {
-            if (result.length % 2 == 0) {
-                defaultResult.set(result[result.length - 1]);
-            }
+	} else {
+	    if (result.length % 2 == 0) {
+		defaultResult.set(result[result.length - 1]);
+	    }
 
-            new Range<Object>(0, result.length - 1).each((i, nextElement) -> {
-                if (i % 2 == 1 && i != result.length - 1) {
-                    ifList.add(result[i]);
-                } else if (i % 2 == 0) {
-                    thenList.add(result[i]);
-                }
-            });
-        }
+	    new Range<Object>(0, result.length - 1).each((i, nextElement) -> {
+		if (i % 2 == 1 && i != result.length - 1) {
+		    ifList.add(result[i]);
+		} else if (i % 2 == 0) {
+		    thenList.add(result[i]);
+		}
+	    });
+	}
 
-        return defaultResult.get();
+	return defaultResult.get();
     }
 
 
@@ -157,24 +134,24 @@ public final class ObjectUtil {
      */
     public static boolean hasValue(final Object object) {
 
-        final Ano<Boolean> retval = new Ano<>();
-        retval.set(object != null && !"".equals(object));
+	final Ano<Boolean> retval = new Ano<>();
+	retval.set(object != null && !"".equals(object));
 
-        if (object != null && !retval.get()) {
-            retval.set(
-                object.getClass().isArray() && ((Object[]) object).length > 0);
-        }
+	if (object != null && !retval.get()) {
+	    retval.set(
+		    object.getClass().isArray() && ((Object[]) object).length > 0);
+	}
 
-        return retval.get();
+	return retval.get();
     }
 
     public static <E extends Enum<E>> Map<String, String> toValueDispMap(final Class<E> eklass) {
 
-        final Map<String, String> retval = new LinkedHashMap<>();
-        for (final E next : EnumSet.allOf(eklass)) {
-            retval.put(next.name(), next.toString());
-        }
-        return retval;
+	final Map<String, String> retval = new ConcurrentHashMap<>();
+	for (final E next : EnumSet.allOf(eklass)) {
+	    retval.put(next.name(), next.toString());
+	}
+	return retval;
 
     }
 

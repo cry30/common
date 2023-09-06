@@ -75,7 +75,7 @@ public class ResourceIterTest {
         });
 
         Assert.assertThat(valueList, is(Arrays.asList(new String[] {
-                "good bye",
+                "goodbye",
                 "A",
                 "B",
                 "C",

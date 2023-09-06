@@ -26,12 +26,26 @@ public final class AnnUtil {
 
     private AnnUtil() {}
 
-
+    /**
+     * Checks of a given klass has the given annotation defined.
+     * 
+     * @param <A>
+     * @param klass
+     * @param annotation
+     * @return
+     */
     public static <A extends Annotation> boolean hasAnnotation(final Class<?> klass,
                                                                final Class<A> annotation) {
         return getAnnotation(klass, annotation) != null;
     }
 
+    /**
+     * 
+     * @param <A>
+     * @param klass
+     * @param annotation
+     * @return
+     */
     public static <A extends Annotation> A getAnnotation(final Class<?> klass,
                                                          final Class<A> annotation) {
         assert klass != null;

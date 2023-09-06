@@ -34,10 +34,10 @@ public class ObjectUtilTest {
     @Test
     public void testMapGetInit() {
 
-        Assert.assertEquals(
-            "world",
-            ObjectUtil
-                .mapGetInit(new HashMap<String, String>(), "hello", "world"));
+	Assert.assertEquals(
+		"world",
+		ObjectUtil
+		.mapGetInit(new HashMap<String, String>(), "hello", "world"));
 
     }
 
@@ -48,7 +48,7 @@ public class ObjectUtilTest {
      */
     @Test
     public void testIsEqual() {
-        Assert.assertTrue(ObjectUtil.isEqual(null, null));
+	Assert.assertTrue(ObjectUtil.isEqual(null, null));
     }
 
     /**
@@ -58,8 +58,8 @@ public class ObjectUtilTest {
      */
     @Test
     public void testNvl() {
-        Assert.assertSame(true, ObjectUtil.nvl(true, 1));
-        Assert.assertSame(1, ObjectUtil.nvl(null, 1));
+	Assert.assertSame(true, ObjectUtil.nvl(true, 1));
+	Assert.assertSame(1, ObjectUtil.nvl(null, 1));
     }
 
     /**
@@ -70,23 +70,23 @@ public class ObjectUtilTest {
     @Test
     public void testDecode() {
 
-        Assert.assertSame(1, ObjectUtil.decode(true, true, 1));
-        Assert.assertSame(1, ObjectUtil.decode(false, false, 1));
+	Assert.assertSame(1, ObjectUtil.decode(true, true, 1));
+	Assert.assertSame(1, ObjectUtil.decode(false, false, 1));
 
-        Assert.assertSame(1, ObjectUtil.decode(true, true, 1, false, 2));
+	Assert.assertSame(1, ObjectUtil.decode(true, true, 1, false, 2));
 
-        Assert.assertSame(2, ObjectUtil.decode(false, true, 1, false, 2));
+	Assert.assertSame(2, ObjectUtil.decode(false, true, 1, false, 2));
 
-        Assert.assertSame('E', ObjectUtil.decode('z', 'a', 'A', 'b', 'B', 'E'));
+	Assert.assertSame('E', ObjectUtil.decode('z', 'a', 'A', 'b', 'B', 'E'));
 
-        //nulls
-        Assert.assertEquals(
-            null,
-            ObjectUtil.decode(null, null, null, "not null"));
+	//nulls
+	Assert.assertEquals(
+		null,
+		ObjectUtil.decode(null, null, null, "not null"));
 
-        Assert.assertNull(ObjectUtil.decode('a', 'a', (Object[]) null));
+	Assert.assertNull(ObjectUtil.decode('a', 'a', (Object[]) null));
 
-        Assert.assertNull(ObjectUtil.decode('a', 'a'));
+	Assert.assertNull(ObjectUtil.decode('a', 'a'));
 
 
     }
