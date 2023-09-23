@@ -1,18 +1,14 @@
 ## Overview
 
-This project is location of commonly used codes.  It is intended to be compact,
-not a substitute to 3rd party tools, but small, targeted solution to actual problems.
+This project contains some of my commonly used codes.  It is intended to be compact,
+and not a substitute to 3rd party tools, but small, targeted solution to actual problems.
 Code implementation maybe copied to actual project so there is no need for actual dependency.
 
 ## Using on Eclipse IDE
 * You may use the Run as JUnit test to verify that it is working correctly. 
 * Make sure you have configured the correct JDK in the pom.xml and in the project properties. The last version used is 17.
 
-
-
 ###
-
-
 
 
 ## Features
