@@ -5,3 +5,6 @@ build:
 
 install:  # Makes it available locally to other projects via maven.
 	mvn install
+
+test:
+	mvn test
